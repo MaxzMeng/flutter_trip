@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trip/navigator/tab_navigator.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 void main() => runApp(MyApp());
 

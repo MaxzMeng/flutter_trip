@@ -7,12 +7,12 @@ class MyPage extends StatefulWidget {
 
 class _MyPageState extends State<MyPage> {
   final PageController _controller = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('我的'),
-      )
-    );
+        body: Center(
+      child: Text('我的'),
+    ));
   }
 }
