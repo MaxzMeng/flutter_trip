@@ -65,55 +65,59 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xf2f2f2),
         body: Stack(
-      children: <Widget>[
-        MediaQuery.removePadding(
-            removeTop: true,
-            context: context,
-            child: NotificationListener(
-                onNotification: (scrollerNotification) {
-                  if (scrollerNotification is ScrollUpdateNotification &&
-                      scrollerNotification.depth == 0) {
-                    _onScroll(scrollerNotification.metrics.pixels);
-                  }
-                  return true;
-                },
-                child: ListView(
-                  children: <Widget>[
-                    Container(
-                      height: 160,
-                      child: Swiper(
-                        itemCount: _imageUrls.length,
-                        autoplay: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Image.network(
-                            _imageUrls[index],
-                            fit: BoxFit.fill,
-                          );
-                        },
-                        pagination: SwiperPagination(),
-                      ),
-                    ),
-                    LocalNav(localNavList: localNavList),
-                    Container(
-                      height: 800,
-                      child: ListTile(
-                        title: Text(resultString),
-                      ),
-                    )
-                  ],
-                ))),
-        Opacity(
-          opacity: appbarAlpha,
-          child: Container(
-            height: 80,
-            decoration: BoxDecoration(color: Colors.white),
-            child: Center(
-                child: Padding(
-                    padding: EdgeInsets.only(top: 20), child: Text('首页'))),
-          ),
-        )
-      ],
-    ));
+          children: <Widget>[
+            MediaQuery.removePadding(
+                removeTop: true,
+                context: context,
+                child: NotificationListener(
+                    onNotification: (scrollerNotification) {
+                      if (scrollerNotification is ScrollUpdateNotification &&
+                          scrollerNotification.depth == 0) {
+                        _onScroll(scrollerNotification.metrics.pixels);
+                      }
+                      return true;
+                    },
+                    child: ListView(
+                      children: <Widget>[
+                        Container(
+                          height: 160,
+                          child: Swiper(
+                            itemCount: _imageUrls.length,
+                            autoplay: true,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Image.network(
+                                _imageUrls[index],
+                                fit: BoxFit.fill,
+                              );
+                            },
+                            pagination: SwiperPagination(),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(7, 4, 7, 4),
+                          child: LocalNav(localNavList: localNavList),
+                        ),
+                        Container(
+                          height: 800,
+                          child: ListTile(
+                            title: Text(resultString),
+                          ),
+                        )
+                      ],
+                    ))),
+            Opacity(
+              opacity: appbarAlpha,
+              child: Container(
+                height: 80,
+                decoration: BoxDecoration(color: Colors.white),
+                child: Center(
+                    child: Padding(
+                        padding: EdgeInsets.only(top: 20), child: Text('首页'))),
+              ),
+            )
+          ],
+        ));
   }
 }
