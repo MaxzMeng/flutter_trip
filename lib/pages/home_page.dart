@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:trip/dao/home_dao.dart';
+import 'package:trip/model/common_model.dart';
 import 'package:trip/model/home_model.dart';
+import 'package:trip/widget/grid_nav.dart';
+import 'package:trip/widget/local_nav.dart';
 
 const APPBAR_MAX_SCROLL_OFFSET = 100;
 
@@ -21,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   ];
   double appbarAlpha = 0;
   String resultString = "";
+  List<CommonModel> localNavList = [];
 
   @override
   void initState() {
@@ -51,12 +55,10 @@ class _HomePageState extends State<HomePage> {
     try {
       HomeModel model = await HomeDao.fetch();
       setState(() {
-        resultString = json.encode(model);
+        localNavList = model.localNavList;
       });
     } catch (e) {
-      setState(() {
-        resultString = e.toString();
-      });
+      print(e);
     }
   }
 
@@ -92,6 +94,7 @@ class _HomePageState extends State<HomePage> {
                         pagination: SwiperPagination(),
                       ),
                     ),
+                    LocalNav(localNavList: localNavList),
                     Container(
                       height: 800,
                       child: ListTile(
